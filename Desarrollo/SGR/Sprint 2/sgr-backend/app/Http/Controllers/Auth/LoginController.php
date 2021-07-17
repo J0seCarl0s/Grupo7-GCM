@@ -54,6 +54,9 @@ class LoginController extends Controller
         $this->validateLogin($request);
 
         if ($this->attemptLogin($request)) {
+
+        $credentials = $request->only('username', 'password');
+        //if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = Str::random(60);
             $user->forceFill([
